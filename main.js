@@ -3,11 +3,21 @@ const translations = {
         recommendation: 'Click the button to get a dinner recommendation!',
         button: 'Recommend Dinner',
         h1: 'Dinner Menu Recommendation',
+        formTitle: 'Partnership Inquiry',
+        labelName: 'Name:',
+        labelEmail: 'Email:',
+        labelMessage: 'Message:',
+        submitButton: 'Submit'
     },
     ko: {
         recommendation: '버튼을 눌러 저녁 메뉴를 추천 받으세요!',
         button: '저녁 메뉴 추천',
         h1: '저녁 메뉴 추천',
+        formTitle: '제휴 문의',
+        labelName: '이름:',
+        labelEmail: '이메일:',
+        labelMessage: '메시지:',
+        submitButton: '제출'
     }
 };
 
@@ -129,6 +139,15 @@ class DinnerRecommender extends HTMLElement {
         this.menuName.textContent = translations[this.lang].recommendation;
         this.button.textContent = translations[this.lang].button;
         document.querySelector('h1').textContent = translations[this.lang].h1;
+        this.renderFormElements(this.lang);
+    }
+
+    renderFormElements(lang) {
+        document.getElementById('contact-form-title').textContent = translations[lang].formTitle;
+        document.getElementById('label-name').textContent = translations[lang].labelName;
+        document.getElementById('label-email').textContent = translations[lang].labelEmail;
+        document.getElementById('label-message').textContent = translations[lang].labelMessage;
+        document.getElementById('submit-button').textContent = translations[lang].submitButton;
     }
 }
 
