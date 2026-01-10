@@ -30,10 +30,15 @@ h1 {
     color: var(--text-color);
 }
 
-#theme-toggle {
+.toggle-buttons {
     position: absolute;
     top: 20px;
     right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.toggle-button {
     padding: 10px;
     border: none;
     background: var(--button-background);
@@ -42,6 +47,6 @@ h1 {
     border-radius: 5px;
 }
 
-#theme-toggle:hover {
+.toggle-button:hover {
     filter: brightness(120%);
 }
