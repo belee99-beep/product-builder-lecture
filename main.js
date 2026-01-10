@@ -30,11 +30,11 @@ class LottoGenerator extends HTMLElement {
                 width: 50px;
                 height: 50px;
                 border-radius: 50%;
-                background-color: #fff;
+                background-color: var(--card-background, #fff);
                 margin: 0 5px;
                 font-size: 24px;
                 font-weight: bold;
-                color: #333;
+                color: var(--text-color, #333);
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
             button {
@@ -42,13 +42,13 @@ class LottoGenerator extends HTMLElement {
                 font-size: 16px;
                 border-radius: 5px;
                 border: none;
-                background-color: #4CAF50;
-                color: white;
+                background-color: var(--button-background, #4CAF50);
+                color: var(--button-text, white);
                 cursor: pointer;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             }
             button:hover {
-                background-color: #45a049;
+                filter: brightness(90%);
             }
         `;
 
@@ -98,3 +98,25 @@ class LottoGenerator extends HTMLElement {
 }
 
 customElements.define('lotto-generator', LottoGenerator);
+
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+function toggleTheme() {
+    body.classList.toggle('dark-mode');
+    const isDarkMode = body.classList.contains('dark-mode');
+    localStorage.setItem('darkMode', isDarkMode);
+    themeToggle.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}
+
+function applyTheme() {
+    const darkMode = localStorage.getItem('darkMode') === 'true';
+    if (darkMode) {
+        body.classList.add('dark-mode');
+    }
+    themeToggle.textContent = darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}
+
+themeToggle.addEventListener('click', toggleTheme);
+document.addEventListener('DOMContentLoaded', applyTheme);
+

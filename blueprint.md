@@ -1,17 +1,25 @@
-# Lotto Number Generator
+# 로또 번호 생성기
 
-## Overview
+이 프로젝트는 간단한 웹 기반 로또 번호 생성기입니다.
 
-A simple web application to generate random lottery numbers.
+## 기능
 
-## Features
+-   **번호 생성:** "번호 생성" 버튼을 클릭하면 1부터 45까지의 6개의 고유한 번호를 생성합니다.
+-   **색상 구분:** 생성된 번호는 값에 따라 다른 색상으로 표시됩니다.
+-   **다크/라이트 모드:** 사용자는 다크 모드와 라이트 모드 테마를 전환할 수 있습니다.
 
-*   Generates 6 unique random numbers between 1 and 45.
-*   Displays the numbers in a visually appealing way.
-*   Uses a Web Component to encapsulate the functionality.
+## 기술 스택
 
-## Current Plan
+-   HTML
+-   CSS
+-   JavaScript (Web Components)
 
-*   **HTML:** Create the basic structure with a title, a container for the lottery numbers, and a button.
-*   **CSS:** Style the page, including the number display and the button.
-*   **JavaScript:** Implement the lottery number generation logic within a custom element (`lotto-generator`).
+## 계획
+
+1.  **`index.html`에 테마 전환 버튼 추가:** 사용자가 테마를 변경할 수 있는 UI 요소를 추가합니다.
+2.  **`style.css`에서 CSS 변수 사용:** 라이트 및 다크 모드에 대한 색상 변수를 정의합니다.
+3.  **`main.js`에 테마 전환 로직 추가:**
+    -   테마 전환 버튼에 대한 이벤트 리스너를 추가합니다.
+    -   `body` 요소에서 `dark-mode` 클래스를 토글합니다.
+    -   `localStorage`에 사용자 기본 설정을 저장하고 페이지 로드 시 이를 확인합니다.
+4.  **Git에 변경 사항 커밋:** 업데이트된 코드를 버전 제어에 커밋합니다.
