@@ -1,6 +1,63 @@
+const translations = {
+    en: {
+        recommendation: 'Click the button to get a dinner recommendation!',
+        button: 'Recommend Dinner',
+        h1: 'Dinner Menu Recommendation',
+    },
+    ko: {
+        recommendation: '버튼을 눌러 저녁 메뉴를 추천 받으세요!',
+        button: '저녁 메뉴 추천',
+        h1: '저녁 메뉴 추천',
+    }
+};
+
+const menus = [
+    {
+        en: 'Pizza',
+        ko: '피자',
+        img: 'images/pizza.jpg'
+    },
+    {
+        en: 'Sushi',
+        ko: '스시',
+        img: 'images/sushi.jpg'
+    },
+    {
+        en: 'Pasta',
+        ko: '파스타',
+        img: 'images/pasta.jpg'
+    },
+    {
+        en: 'Steak',
+        ko: '스테이크',
+        img: 'images/steak.jpg'
+    },
+    {
+        en: 'Salad',
+        ko: '샐러드',
+        img: 'images/salad.jpg'
+    },
+    {
+        en: 'Tacos',
+        ko: '타코',
+        img: 'images/tacos.jpg'
+    },
+    {
+        en: 'Fried Chicken',
+        ko: '치킨',
+        img: 'images/fried-chicken.jpg'
+    },
+    {
+        en: 'Bibimbap',
+        ko: '비빔밥',
+        img: 'images/bibimbap.jpg'
+    }
+];
+
 class DinnerRecommender extends HTMLElement {
     constructor() {
         super();
+        this.lang = 'en';
         const shadow = this.attachShadow({ mode: 'open' });
 
         const wrapper = document.createElement('div');
@@ -8,10 +65,15 @@ class DinnerRecommender extends HTMLElement {
 
         const menuDisplay = document.createElement('div');
         menuDisplay.setAttribute('class', 'menu-display');
-        menuDisplay.textContent = 'Click the button to get a dinner recommendation!';
+
+        const menuImage = document.createElement('img');
+        menuImage.setAttribute('class', 'menu-image');
+        menuImage.style.display = 'none';
+
+        const menuName = document.createElement('p');
+        menuName.setAttribute('class', 'menu-name');
 
         const button = document.createElement('button');
-        button.textContent = 'Recommend Dinner';
 
         const style = document.createElement('style');
         style.textContent = `
@@ -22,10 +84,11 @@ class DinnerRecommender extends HTMLElement {
             }
             .menu-display {
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 width: 300px;
-                height: 100px;
+                min-height: 200px;
                 border-radius: 10px;
                 background-color: var(--card-background, #fff);
                 margin-bottom: 20px;
@@ -35,6 +98,13 @@ class DinnerRecommender extends HTMLElement {
                 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
                 text-align: center;
                 padding: 20px;
+            }
+            .menu-image {
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 10px;
+                margin-bottom: 10px;
             }
             button {
                 padding: 15px 30px;
@@ -55,14 +125,33 @@ class DinnerRecommender extends HTMLElement {
         shadow.appendChild(style);
         shadow.appendChild(wrapper);
         wrapper.appendChild(menuDisplay);
+        menuDisplay.appendChild(menuImage);
+        menuDisplay.appendChild(menuName);
         wrapper.appendChild(button);
 
-        const menus = ['Pizza', 'Sushi', 'Pasta', 'Steak', 'Salad', 'Tacos', 'Fried Chicken', 'Bibimbap'];
+        this.menuDisplay = menuDisplay;
+        this.menuImage = menuImage;
+        this.menuName = menuName;
+        this.button = button;
 
         button.addEventListener('click', () => {
             const randomIndex = Math.floor(Math.random() * menus.length);
-            menuDisplay.textContent = menus[randomIndex];
+            const selectedMenu = menus[randomIndex];
+            this.menuImage.src = selectedMenu.img;
+            this.menuImage.style.display = 'block';
+            this.menuName.textContent = selectedMenu[this.lang];
         });
+    }
+
+    connectedCallback() {
+        this.lang = document.documentElement.lang || 'en';
+        this.render();
+    }
+
+    render() {
+        this.menuName.textContent = translations[this.lang].recommendation;
+        this.button.textContent = translations[this.lang].button;
+        document.querySelector('h1').textContent = translations[this.lang].h1;
     }
 }
 
@@ -87,4 +176,19 @@ function applyTheme() {
 }
 
 themeToggle.addEventListener('click', toggleTheme);
-document.addEventListener('DOMContentLoaded', applyTheme);
+
+const langToggle = document.getElementById('lang-toggle');
+langToggle.addEventListener('click', () => {
+    const currentLang = document.documentElement.lang;
+    const newLang = currentLang === 'ko' ? 'en' : 'ko';
+    document.documentElement.lang = newLang;
+    document.querySelectorAll('dinner-recommender').forEach(el => {
+        el.lang = newLang;
+        el.render();
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    applyTheme();
+    document.documentElement.lang = 'en';
+});
