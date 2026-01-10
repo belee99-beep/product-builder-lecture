@@ -1,4 +1,4 @@
-class LottoGenerator extends HTMLElement {
+class DinnerRecommender extends HTMLElement {
     constructor() {
         super();
         const shadow = this.attachShadow({ mode: 'open' });
@@ -6,11 +6,12 @@ class LottoGenerator extends HTMLElement {
         const wrapper = document.createElement('div');
         wrapper.setAttribute('class', 'container');
 
-        const numbersDiv = document.createElement('div');
-        numbersDiv.setAttribute('class', 'numbers');
+        const menuDisplay = document.createElement('div');
+        menuDisplay.setAttribute('class', 'menu-display');
+        menuDisplay.textContent = 'Click the button to get a dinner recommendation!';
 
         const button = document.createElement('button');
-        button.textContent = 'Generate Numbers';
+        button.textContent = 'Recommend Dinner';
 
         const style = document.createElement('style');
         style.textContent = `
@@ -19,85 +20,53 @@ class LottoGenerator extends HTMLElement {
                 flex-direction: column;
                 align-items: center;
             }
-            .numbers {
-                display: flex;
-                margin-bottom: 20px;
-            }
-            .number {
+            .menu-display {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
+                width: 300px;
+                height: 100px;
+                border-radius: 10px;
                 background-color: var(--card-background, #fff);
-                margin: 0 5px;
+                margin-bottom: 20px;
                 font-size: 24px;
                 font-weight: bold;
                 color: var(--text-color, #333);
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                text-align: center;
+                padding: 20px;
             }
             button {
-                padding: 10px 20px;
-                font-size: 16px;
-                border-radius: 5px;
+                padding: 15px 30px;
+                font-size: 18px;
+                border-radius: 8px;
                 border: none;
                 background-color: var(--button-background, #4CAF50);
                 color: var(--button-text, white);
                 cursor: pointer;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+                transition: transform 0.2s;
             }
             button:hover {
-                filter: brightness(90%);
+                transform: scale(1.05);
             }
         `;
 
         shadow.appendChild(style);
         shadow.appendChild(wrapper);
-        wrapper.appendChild(numbersDiv);
+        wrapper.appendChild(menuDisplay);
         wrapper.appendChild(button);
 
+        const menus = ['Pizza', 'Sushi', 'Pasta', 'Steak', 'Salad', 'Tacos', 'Fried Chicken', 'Bibimbap'];
+
         button.addEventListener('click', () => {
-            this.generateNumbers(numbersDiv);
+            const randomIndex = Math.floor(Math.random() * menus.length);
+            menuDisplay.textContent = menus[randomIndex];
         });
-
-        this.generateNumbers(numbersDiv);
-    }
-
-    generateNumbers(container) {
-        container.innerHTML = '';
-        const numbers = new Set();
-        while (numbers.size < 6) {
-            numbers.add(Math.floor(Math.random() * 45) + 1);
-        }
-
-        Array.from(numbers).sort((a, b) => a - b).forEach(number => {
-            const numberDiv = document.createElement('div');
-            numberDiv.setAttribute('class', 'number');
-            numberDiv.textContent = number;
-            this.setNumberColor(numberDiv, number);
-            container.appendChild(numberDiv);
-        });
-    }
-
-    setNumberColor(element, number) {
-        let color;
-        if (number <= 10) {
-            color = '#fbc400'; // Yellow
-        } else if (number <= 20) {
-            color = '#69c8f2'; // Blue
-        } else if (number <= 30) {
-            color = '#ff7272'; // Red
-        } else if (number <= 40) {
-            color = '#aaa'; // Gray
-        } else {
-            color = '#b0d840'; // Green
-        }
-        element.style.backgroundColor = color;
     }
 }
 
-customElements.define('lotto-generator', LottoGenerator);
+customElements.define('dinner-recommender', DinnerRecommender);
 
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
@@ -119,4 +88,3 @@ function applyTheme() {
 
 themeToggle.addEventListener('click', toggleTheme);
 document.addEventListener('DOMContentLoaded', applyTheme);
-
