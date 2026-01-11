@@ -9,27 +9,53 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
-    <h1>Dinner Menu Recommendation</h1>
-    <dinner-recommender></dinner-recommender>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Dinner Menu Recommendation</h1>
+        <p>Welcome to our dinner menu recommendation service. We help you decide what to eat for dinner!</p>
+        <dinner-recommender></dinner-recommender>
 
-    <section class="contact-form-section">
-        <h2 id="contact-form-title">Partnership Inquiry</h2>
-        <form action="https://formspree.io/f/maqqwdpd" method="POST" class="contact-form">
-            <div class="form-group">
-                <label for="name" id="label-name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email" id="label-email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message" id="label-message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" id="submit-button">Submit</button>
-        </form>
-    </section>
+        <section>
+            <h2>Why use our service?</h2>
+            <p>Choosing what to have for dinner can be a daily challenge. Our service simplifies this process by providing you with a random dinner suggestion. We have a large database of recipes, so you'll never get bored!</p>
+        </section>
+
+        <section>
+            <h2>How it works</h2>
+            <p>Simply click the "Get Recommendation" button in the dinner-recommender component, and we will suggest a delicious meal for you. You can also filter by category to narrow down the options.</p>
+        </section>
+
+        <section class="contact-form-section">
+            <h2 id="contact-form-title">Partnership Inquiry</h2>
+            <form action="https://formspree.io/f/maqqwdpd" method="POST" class="contact-form">
+                <div class="form-group">
+                    <label for="name" id="label-name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" id="label-email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message" id="label-message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Your Company. All rights reserved.</p>
+        <a href="privacy.html">Privacy Policy</a>
+    </footer>
     <div class="toggle-buttons">
         <button id="theme-toggle" class="toggle-button">Toggle Theme</button>
         <button id="lang-toggle" class="toggle-button">한국어 / English</button>
