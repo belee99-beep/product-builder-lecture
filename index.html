@@ -13,6 +13,8 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li><a href="privacy.html">Privacy Policy</a></li>
             </ul>
         </nav>
@@ -22,43 +24,37 @@
         <p>Welcome to the Dinner Recommender! We take the stress out of your daily meal planning. Say goodbye to endless scrolling and decision fatigue. One click is all it takes to find your next delicious meal.</p>
         <dinner-recommender></dinner-recommender>
 
-        <section>
-            <h2>Why Use the Dinner Recommender?</h2>
-            <p>Deciding what to eat every single night can be surprisingly stressful and time-consuming. Our service is designed to break that cycle. We provide instant, varied, and inspiring dinner ideas so you can focus on what matters: enjoying your food and your evening. We've curated a diverse database of dishes, from quick weeknight meals to weekend feasts, ensuring there's always something new to try.</p>
+        <section class="featured-recipes">
+            <h2>Featured Recipes</h2>
+            <div class="recipe-cards">
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2680&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Recipe 1">
+                    <h3>Quick & Easy Pasta</h3>
+                    <p>A delicious and simple pasta dish that's ready in under 20 minutes.</p>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=2588&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Recipe 2">
+                    <h3>Healthy Grilled Chicken Salad</h3>
+                    <p>A light and nutritious salad, perfect for a healthy meal.</p>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?q=80&w=2580&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Recipe 3">
+                    <h3>Hearty Beef Stew</h3>
+                    <p>A warm and comforting stew, ideal for a cold evening.</p>
+                </div>
+            </div>
         </section>
 
-        <section>
-            <h2>How It Works: Simple and Instant</h2>
-            <p>Using our service couldn't be easier. Just click the "Recommend Dinner" button. Our algorithm will instantly select a random, delicious meal suggestion from our extensive database. No sign-ups, no fees, no hassle—just a simple, effective solution to the daily "what's for dinner?" question.</p>
+        <section class="about-us-teaser">
+            <h2>About Us</h2>
+            <p>We are a team of food lovers dedicated to making your life easier. Our mission is to provide you with endless dinner inspiration, one click at a time. Find out more about our story and our team.</p>
+            <a href="about.html" class="cta-button">Learn More</a>
         </section>
 
-        <section>
-            <h2>Our Philosophy</h2>
-            <p>We believe that food should be a source of joy, not stress. In our fast-paced world, the simple act of choosing a meal can become another chore on a long to-do list. Our mission is to give you back your time and energy by making that one decision for you. We encourage culinary exploration and the simple pleasure of a good meal, shared with loved ones or enjoyed in peaceful solitude. Let us handle the 'what', so you can focus on the 'yum'.</p>
-        </section>
-
-        <section class="contact-form-section">
-            <h2 id="contact-form-title">Contact Us</h2>
-            <form action="https://formspree.io/f/maqqwdpd" method="POST" class="contact-form">
-                <div class="form-group">
-                    <label for="name" id="label-name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email" id="label-email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message" id="label-message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" id="submit-button">Submit</button>
-            </form>
-        </section>
     </main>
     <footer>
         <p>&copy; 2026 Dinner Recommender. All rights reserved.</p>
-        <a href="privacy.html">Privacy Policy</a>
+        <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a>
     </footer>
     <div class="toggle-buttons">
         <button id="theme-toggle" class="toggle-button">Toggle Theme</button>

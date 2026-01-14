@@ -1,32 +1,42 @@
-# 저녁 메뉴 추천
+# Dinner Menu Recommender
 
-이 프로젝트는 간단한 웹 기반 저녁 메뉴 추천 사이트입니다.
+This project is a web-based dinner menu recommendation site. It helps users decide what to have for dinner by providing random meal suggestions.
 
-## 기능
+## Features
 
-- **메뉴 추천:** "메뉴 추천" 버튼을 클릭하면 미리 정의된 목록에서 무작위로 저녁 메뉴를 추천합니다.
-- **다국어 지원:** 한국어와 영어 간의 언어 전환을 지원합니다.
-- **다크/라이트 모드:** 사용자는 다크 모드와 라이트 모드 테마를 전환할 수 있습니다.
-- **제휴 문의 폼:** Formspree를 이용한 간단한 제휴 문의 폼을 제공합니다.
+- **Categorized Recommendations:** Users can get dinner recommendations based on categories such as 'Quick & Easy', 'Healthy', 'Vegetarian', 'Comfort Food', and 'Exotic'.
+- **Recipe Details:** Each recommendation comes with a name, a short description, and an image of the dish.
+- **Multi-language Support:** The user interface supports both English and Korean.
+- **Dark/Light Mode:** Users can toggle between dark and light themes for better viewing comfort.
+- **About Page:** Provides information about the mission and team behind the project.
+- **Contact Page:** A dedicated page with a contact form for user feedback and inquiries.
+- **Privacy Policy Page:** A detailed privacy policy to inform users about data handling practices.
 
-## 기술 스택
+## Technology Stack
 
 - HTML
 - CSS
 - JavaScript (Web Components)
 
-## 계획
+## Plan to Address AdSense Rejection
 
-1. **`index.html` 수정:**
-    -   토글 버튼에 클래스를 추가하고 `div`로 그룹화합니다.
-    -   Formspree를 이용한 제휴 문의 폼 섹션을 추가합니다.
-    -   Google AdSense 스크립트를 `<head>` 태그에 추가하여 광고를 삽입합니다.
-2. **`style.css` 수정:**
-    -   토글 버튼에 대한 공통 스타일을 추가합니다.
-    -   제휴 문의 폼에 대한 스타일을 추가합니다.
-3. **`main.js` 수정:**
-    -   `DinnerRecommender` 컴포넌트에서 이미지 표시 기능을 제거합니다.
-    -   제휴 문의 폼 요소에 대한 다국어 번역을 추가하고, 언어 전환 시 폼 텍스트도 업데이트되도록 합니다.
-4. **`images` 디렉토리 삭제:** 이미지 디렉토리를 삭제합니다.
-5. **Git에 변경 사항 커밋:** 업데이트된 코드를 버전 제어에 커밋합니다.
-6. **원격 저장소에 푸시:** 변경 사항을 원격 저장소에 푸시합니다.
+The following changes were made to address the "low-value content" issue and improve the user experience:
+
+1.  **Enriched Content:**
+    -   Expanded the dinner menu database with more diverse options.
+    -   Added descriptions and images to each menu item to provide more value.
+    -   Introduced categories to make the recommendations more relevant to the user.
+
+2.  **Improved Site Structure:**
+    -   Created an **About Us** page (`about.html`) to build trust and share the story behind the project.
+    -   Created a dedicated **Contact** page (`contact.html`) for user inquiries.
+    -   Improved the **Privacy Policy** page (`privacy.html`) with more detailed information.
+
+3.  **Enhanced User Interface:**
+    -   Redesigned the main page (`index.html`) to feature the improved recommender and added sections for "Featured Recipes" and an "About Us" teaser.
+    -   Updated the navigation and footer to include links to the new pages.
+    -   Improved the styling (`style.css`) to create a more professional and visually appealing layout.
+
+4.  **Updated JavaScript (`main.js`):**
+    -   The `DinnerRecommender` web component was updated to handle categorized recommendations and display recipe details (image and description).
+    -   The translation capabilities were extended to support the new UI elements.
