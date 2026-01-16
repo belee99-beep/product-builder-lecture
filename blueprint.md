@@ -26,16 +26,19 @@ The following changes were made to address the "low-value content" issue and imp
     -   Expanded the dinner menu database with more diverse options.
     -   Added descriptions and images to each menu item to provide more value.
     -   Introduced categories to make the recommendations more relevant to the user.
+    -   Created detailed recipe pages (`recipe-pasta.html`, `recipe-salad.html`, `recipe-stew.html`) with ingredients and step-by-step instructions to provide substantial, high-value content.
 
 2.  **Improved Site Structure:**
     -   Created an **About Us** page (`about.html`) to build trust and share the story behind the project.
     -   Created a dedicated **Contact** page (`contact.html`) for user inquiries.
     -   Improved the **Privacy Policy** page (`privacy.html`) with more detailed information.
+    -   The "Featured Recipes" section on `index.html` now links to the new detailed recipe pages.
 
 3.  **Enhanced User Interface:**
     -   Redesigned the main page (`index.html`) to feature the improved recommender and added sections for "Featured Recipes" and an "About Us" teaser.
     -   Updated the navigation and footer to include links to the new pages.
     -   Improved the styling (`style.css`) to create a more professional and visually appealing layout.
+    -   Added specific styles to `style.css` for the recipe cards and detailed recipe pages to ensure a cohesive and professional look.
 
 4.  **Updated JavaScript (`main.js`):**
     -   The `DinnerRecommender` web component was updated to handle categorized recommendations and display recipe details (image and description).
