@@ -310,73 +310,47 @@ themeToggle.addEventListener('click', toggleTheme);
 
 const langToggle = document.getElementById('lang-toggle');
 
-function updateNavigationLinks() {
-    const currentLang = document.documentElement.lang;
-    const navLinks = document.querySelectorAll('nav ul li a, footer a'); // Select all navigation and footer links
-
-    navLinks.forEach(link => {
-        let href = link.getAttribute('href');
-        if (!href) return; // Skip if href is null or empty
-
-        // Store original href if not already stored
-        if (!link.dataset.originalHref) {
-            link.dataset.originalHref = href;
-        } else {
-            href = link.dataset.originalHref; // Use original href for toggling
-        }
-
-        let newHref = href;
-        if (currentLang === 'ko') {
-            // Convert English pages to Korean pages, but only if they are not already Korean
-            if (!href.includes('_ko.html') && href !== 'index.html') { // index.html is the base Korean page
-                newHref = href.replace('.html', '_ko.html');
-            } else if (href === 'index.html') {
-                newHref = 'index.html'; // index.html is considered the default Korean homepage
-            }
-        } else { // currentLang is 'en'
-            // Convert Korean pages back to English pages
-            if (href.includes('_ko.html')) {
-                newHref = href.replace('_ko.html', '.html');
-            }
-        }
-        link.setAttribute('href', newHref);
-
-        // Update link text for basic navigation items
-        // This part needs careful handling if the text is not directly translatable or part of component
-        // For simplicity, I'll update the text for known links
-        if (link.textContent === 'Home' && currentLang === 'ko') link.textContent = '홈';
-        else if (link.textContent === '홈' && currentLang === 'en') link.textContent = 'Home';
-        
-        if (link.textContent === 'About' && currentLang === 'ko') link.textContent = '소개';
-        else if (link.textContent === '소개' && currentLang === 'en') link.textContent = 'About';
-
-        if (link.textContent === 'Contact' && currentLang === 'ko') link.textContent = '문의';
-        else if (link.textContent === '문의' && currentLang === 'en') link.textContent = 'Contact';
-
-        if (link.textContent === 'Privacy Policy' && currentLang === 'ko') link.textContent = '개인정보처리방침';
-        else if (link.textContent === '개인정보처리방침' && currentLang === 'en') link.textContent = 'Privacy Policy';
-    });
-}
-
-
 langToggle.addEventListener('click', () => {
     const currentLang = document.documentElement.lang;
     const newLang = currentLang === 'ko' ? 'en' : 'ko';
     document.documentElement.lang = newLang; // Update the document lang attribute
 
-    // Update Web Component languages
-    document.querySelectorAll('dinner-recommender').forEach(el => {
-        el.lang = newLang;
-        el.render();
-    });
+    // Get current path and filename
+    const currentPath = window.location.pathname;
+    let baseFilename = currentPath.split('/').pop();
+    let newPathname = currentPath;
+
+    // Special handling for index pages
+    if (baseFilename === 'index.html' && newLang === 'en') {
+        newPathname = currentPath.replace('index.html', 'index_en.html');
+    } else if (baseFilename === 'index_en.html' && newLang === 'ko') {
+        newPathname = currentPath.replace('index_en.html', 'index.html');
+    } else if (newLang === 'ko') {
+        // If current page is e.g., "about.html", new is "about_ko.html"
+        if (!baseFilename.includes('_ko.html')) {
+            newPathname = currentPath.replace('.html', '_ko.html');
+        }
+    } else { // newLang === 'en'
+        // If current page is e.g., "about_ko.html", new is "about.html"
+        if (baseFilename.includes('_ko.html')) {
+            newPathname = currentPath.replace('_ko.html', '.html');
+        }
+    }
     
-    // Update static navigation links
-    updateNavigationLinks();
+    // Perform full page redirect
+    if (newPathname !== currentPath) {
+        window.location.href = newPathname;
+    } else {
+        // If no redirection happens (e.g., on index.html and toggling to ko),
+        // ensure web components re-render correctly.
+        document.querySelectorAll('dinner-recommender').forEach(el => {
+            el.lang = newLang;
+            el.render();
+        });
+    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
     applyTheme();
-    // Set initial language based on the document.documentElement.lang (which should be 'ko' now)
-    // and then update navigation links based on this initial language
-    updateNavigationLinks(); 
+    // No dynamic link updates needed on DOMContentLoaded anymore, as toggle handles redirection.
 });
