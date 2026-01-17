@@ -321,5 +321,5 @@ langToggle.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     applyTheme();
-    document.documentElement.lang = 'en';
+    document.documentElement.lang = 'ko'; // Changed default language to Korean
 });
