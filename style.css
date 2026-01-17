@@ -351,3 +351,62 @@ section {
     line-height: 1.5;
 }
 
+/* Social Share Section */
+.social-share-section {
+    margin-top: 40px;
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.social-share-section h2 {
+    border-bottom: none;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+    color: white; /* Default text color for share buttons */
+}
+
+.share-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.share-button.facebook {
+    background-color: #3b5998;
+}
+
+.share-button.twitter {
+    background-color: #00acee;
+}
+
+.share-button.copy-link {
+    background-color: #6c757d; /* A neutral gray */
+}
+
+
